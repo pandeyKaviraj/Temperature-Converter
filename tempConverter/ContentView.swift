@@ -11,6 +11,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var tempInput = ""
     @State private var firstUnits = ["℃", "℉", "K"]
+     @State private var secondUnits = ["℃", "℉", "K"]
     @State private var firstDefaultUnits = "℃"
     var body: some View {
         NavigationView {
@@ -33,9 +34,18 @@ struct ContentView: View {
                         .keyboardType(.decimalPad)
                 }
                 
+                Section(header: Text("Choose Unit to Convert")) {
+                    Picker("Choose Unit", selection: $secondUnits) {
+                        ForEach (0 ..< secondUnits.count) {
+                            Text("\(self.secondUnits[$0])")
+                        }
+                    }
+                .pickerStyle(SegmentedPickerStyle())
+                }
+                
                 
             }//Form Closes
-        .navigationBarTitle("Temperature Converter!")
+        .navigationBarTitle("Temperature Converter")
         }
         
     }
